@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: "Endereco",
       underscored: true,
+      timestamps: false,
+      
+      
     }
   );
 

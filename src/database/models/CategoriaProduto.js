@@ -32,17 +32,18 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         {
-            tableName:"CategoriaProdutos",
+            tableName:"categoria_produtos",
             underscored: true,
+            timestamps: false,
         },
     );
 
     // uma categoria pode ter varios produtos:
     CategoriaProduto.associate = function(models){
-        CategoriaProduto.hasMany(models.Produto, {
+        CategoriaProduto.belongsTo(models.Produto, {
 
             as: "Produto",
-            foreginKey: "CategoriaProdutos_id",
+            foreginKey: "categoria_produtos_id",
 
 
         })};
