@@ -19,10 +19,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         notNull: true,
       },
+      categoriaProdutosId: {
+        type: DataTypes.INTEGER,
+        notNull: true,
+      },
+
     
     },
     {
-      tableName: "Produtos",
+      tableName: "produtos",
       underscored: true,
       timestamps: false,
     }
@@ -31,17 +36,15 @@ module.exports = (sequelize, DataTypes) => {
   Produto.associate = function (models) {
     Produto.belongsTo(models.CategoriaProduto, {
       as: "CategoriaProduto",
-      foreginKey: "categoria_produtos_id",
-    });
-  };
+      foreignKey: "categoria_produtos_id",
+    }),
 
-  Produto.associate = function (models) {
     Produto.belongsToMany(models.Pedido, {
       as: "ProdutosPedidos",
 
       through: "produtos_pedidos",
-      foreginKey: "pedido_id",
-      otherKey: "produto_id",
+      foreignKey: "produto_id",
+      otherKey: "pedido_id",
     });
   };
 
