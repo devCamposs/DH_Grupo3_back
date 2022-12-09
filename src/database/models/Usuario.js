@@ -1,7 +1,6 @@
 const { sequelize, DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-
   const Usuario = sequelize.define(
     "Usuario",
     {
@@ -33,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "Usuario",
+      tableName: "usuario",
       underscored: true,
       timestamps: false,
     }
@@ -42,17 +41,14 @@ module.exports = (sequelize, DataTypes) => {
   Usuario.associate = function (models) {
     Usuario.hasMany(models.Endereco, {
       as: "Endereco",
-      foreginKey: "usuario_id",
-    });
-  };
-
-  Usuario.associate = function (models) {
-    Usuario.hasMany(models.Pedido, {
-      as: "Pedido",
-      foreginKey: "pedido_id",
-    });
+      foreignKey: "usuario_id",
+    }),
+      (Usuario.associate = function (models) {
+        Usuario.hasMany(models.Pedido, {
+          as: "Pedido",
+          foreignKey: "pedido_id",
+        });
+      });
   };
   return Usuario;
 };
-
-   

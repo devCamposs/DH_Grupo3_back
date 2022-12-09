@@ -1,7 +1,6 @@
 const { sequelize, DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-
   const Pedido = sequelize.define(
     "Pedido",
     {
@@ -33,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "Pedido",
+      tableName: "pedido",
       underscored: true,
       timestamps: false,
     }
@@ -42,28 +41,24 @@ module.exports = (sequelize, DataTypes) => {
   Pedido.associate = function (models) {
     Pedido.belongsTo(models.Usuario, {
       as: "Usuario",
-      foreginKey: "usuario_id",
-    });
-  };
+      foreignKey: "usuario_id",
+    }),
+      (Pedido.associate = function (models) {
+        Pedido.belongsTo(models.Pagamento, {
+          as: "Pagamento",
+          foreignKey: "pedido_id ",
+        }),
+          (Pedido.associate = function (models) {
+            Pedido.belongsToMany(models.Produto, {
+              as: "Produto",
 
-  Pedido.associate = function (models) {
-    Pedido.belongsTo(models.Pagamento, {
-      as: "Pagamento",
-      foreginKey: "pedido_id ",
-    });
-  };
-
-  Pedido.associate = function (models) {
-    Pedido.belongsToMany(models.Produto, {
-      as: "Produto",
-
-      through: "produtos_pedidos",
-      foreginKey: "produto_id",
-      otherKey: "pedido_id",
-    });
+              through: "produtos_pedidos",
+              foreignKey: "produto_id",
+              otherKey: "pedido_id",
+            });
+          });
+      });
   };
 
   return Pedido;
 };
-
-

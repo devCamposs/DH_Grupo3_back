@@ -28,25 +28,23 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "Endereco",
+      tableName: "endereco",
       underscored: true,
       timestamps: false,
-      
-      
     }
   );
 
   Endereco.associate = function (models) {
     Endereco.belongsTo(models.Usuario, {
       as: "Endereco",
-      foreginKey: "usuarios_id",
-    });
-  };
-  Endereco.associate = function (models) {
-    Endereco.hasMany(models.Pedido, {
-      as: "Pagamento",
-      foreginKey: "endereco_id",
-    });
+      foreignKey: "usuarios_id",
+    }),
+      (Endereco.associate = function (models) {
+        Endereco.hasMany(models.Pedido, {
+          as: "Pagamento",
+          foreignKey: "endereco_id",
+        });
+      });
   };
 
   return Endereco;

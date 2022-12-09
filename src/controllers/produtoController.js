@@ -33,11 +33,12 @@ const produtoController = {
 
     create: async (req, res) => {
         const produto = req.body
+        console.log(produto);
         try {
           await Produto.create(produto)
           res.status(201).json({ msg: 'Produto criado com sucesso!' })
         } catch (err) {
-          res.status(400).json({ error: [...err] }) // 400 = Bad Request
+          res.status(400).json(err) // 400 = Bad Request
         }
     },
 

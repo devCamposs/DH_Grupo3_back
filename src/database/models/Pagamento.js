@@ -44,17 +44,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "Pagamento",
+      tableName: "pagamento",
       underscored: true,
       timestamps: false,
     }
   );
 
-
-   Pagamento.associate = function (models) {
+  Pagamento.associate = function (models) {
     Pagamento.hasMany(models.Pedido, {
       as: "Pedido",
-      foreginKey: "pagamento_id",
+      foreignKey: "pagamento_id",
     });
   };
   return Pagamento;
