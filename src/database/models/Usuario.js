@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         notNull: true,
       },
-      nome: {
+      name: {
         type: DataTypes.STRING,
         notNull: true,
       },
@@ -26,10 +26,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         notNull: true,
       },
-      newsletter: {
-        type: DataTypes.INTEGER,
-        notNull: true,
-      },
     },
     {
       tableName: "usuario",
@@ -37,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-
+/* ******* Duvida a tabela Usuario tbm não esta associada com a Pagamento? ******* */
   Usuario.associate = function (models) {
     Usuario.hasMany(models.Endereco, {
       as: "Endereco",

@@ -1,11 +1,16 @@
 const express = require('express')
-const path = require('path')
+const path = require('path');
+
 
 const app = express();
 const produtoRouter = require('./routes/produto')
+const clienteRouter = require('./routes/cliente');
 
 app.use(express.json());
-app.use('/produto', produtoRouter);
+
+app.use('/produto', produtoRouter)
+app.use('/cliente', clienteRouter);//josé 
+
 
 // error handler
 app.use(function (err, req, res, next) {
