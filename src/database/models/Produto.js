@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         notNull: true,
       },
-
-    
+  
     },
     {
       tableName: "produtos",
