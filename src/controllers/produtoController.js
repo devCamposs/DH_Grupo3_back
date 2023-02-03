@@ -3,7 +3,9 @@ const Produto = db.Produto;
 
 const produtoController = {
     list: (req, res) => {
-        Produto.findAll()
+        Produto.findAll( {
+            include: [{ model: db.Cores, as: "cores"}]
+        })
             .then((produtos) => {
                 res.status(200).json(produtos)
             })
