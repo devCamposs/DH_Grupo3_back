@@ -10,7 +10,7 @@ const clienteController = {
             nome: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            newsLetter: req.body.newsLetter
+            newsletter: req.body.newsLetter
         }
         try {
             await Usuario.create(user) //criando o usuario
