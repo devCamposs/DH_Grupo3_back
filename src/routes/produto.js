@@ -5,6 +5,7 @@ const produtoController = require('../controllers/produtoController')
 
 router.get('/', produtoController.list)
 router.get('/:id', produtoController.findById)
+router.get('/categoria/:id', produtoController.category)
 router.post('/', produtoController.create)
 router.put('/:id', produtoController.update) // atualizar
 router.patch('/:id', produtoController.partialUpdate)

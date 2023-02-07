@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
   )
   Cores.associate = function (models) {
     Cores.belongsTo(models.Produto, {
-      as: "Produto",
-      foreignKey: "produto_id",
+      as: "produto",
+      foreignKey: "id",
     })
   }
   return Cores;

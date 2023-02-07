@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "categoria",
     }),
     Produto.hasMany(models.Cores, {
-      as: "Cores",
-      foreignKey: "id"
+      as: "cores",
+      foreignKey: "produto_id"
     }
       ),
       Produto.belongsToMany(models.Pedido, {
