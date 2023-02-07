@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         notNull: true,
       },
-      name: {
+      nome: {
         type: DataTypes.STRING,
         notNull: true,
       },
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull: true,
       },
       password: {
-        type: DataTypes.STRING, // saber se poder ser outross type pois senha pode ter numeros INTEGER e STRING
+        type: DataTypes.STRING,
         notNull: true,
       },
       newsletter: {
@@ -33,18 +33,18 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-/* ******* Duvida a tabela Usuario tbm não esta associada com a Pagamento? ******* */
-  Usuario.associate = function (models) {
-    Usuario.hasMany(models.Endereco, {
-      as: "Endereco",
-      foreignKey: "usuario_id",
-    }),
-      (Usuario.associate = function (models) {
-        Usuario.hasMany(models.Pedido, {
-          as: "Pedido",
-          foreignKey: "pedido_id",
-        });
-      });
-  };
+/******** Duvida a tabela Usuario tbm não esta associada com a Pagamento? ******* */
+  // Usuario.associate = function (models) {
+  //   Usuario.hasMany(models.Endereco, {
+  //     as: "Endereco",
+  //     foreignKey: "usuario_id",
+  //   }),
+  //     (Usuario.associate = function (models) {
+  //       Usuario.hasMany(models.Pedido, {
+  //         as: "Pedido",
+  //         foreignKey: "pedido_id",
+  //       });
+  //     });
+  // };
   return Usuario;
 };
