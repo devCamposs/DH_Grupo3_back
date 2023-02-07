@@ -1,6 +1,4 @@
-
 const { sequelize, DataTypes } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
   const Produto = sequelize.define(
     "Produto",
@@ -11,42 +9,45 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         notNull: true,
       },
-      cor: {
+      categoria: {
+        type: DataTypes.INTEGER,
+        notNull: true,
+      },
+      modelo: {
         type: DataTypes.STRING,
         notNull: true,
       },
-      imagem: {
+      descricao: {
+        type: DataTypes.STRING,
+        notNull: true,
+      },
+      preco: {
         type: DataTypes.INTEGER,
         notNull: true,
       },
-      categoriaProdutosId: {
-        type: DataTypes.INTEGER,
-        notNull: true,
-      },
-  
     },
     {
       tableName: "produtos",
       underscored: true,
       timestamps: false,
     }
-  );
-
+  )
   Produto.associate = function (models) {
     Produto.belongsTo(models.CategoriaProduto, {
       as: "CategoriaProduto",
-      foreignKey: "categoria_produtos_id",
+      foreignKey: "categoria",
     }),
-
-    Produto.belongsToMany(models.Pedido, {
-      as: "ProdutosPedidos",
-
-      through: "produtos_pedidos",
-      foreignKey: "produto_id",
-      otherKey: "pedido_id",
-    });
-  };
-
+    Produto.hasMany(models.Cores, {
+      as: "cores",
+      foreignKey: "produto_id"
+    }
+      ),
+      Produto.belongsToMany(models.Pedido, {
+        as: "ProdutosPedidos",
+        through: "produtos_pedidos",
+        foreignKey: "produto_id",
+        otherKey: "pedido_id", 
+      })
+  }
   return Produto;
 };
-

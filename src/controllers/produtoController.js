@@ -3,7 +3,9 @@ const Produto = db.Produto;
 
 const produtoController = {
     list: (req, res) => {
-        Produto.findAll()
+        Produto.findAll( {
+            include: [{ model: db.Cores, as: "cores"}]
+        })
             .then((produtos) => {
                 res.status(200).json(produtos)
             })
@@ -11,7 +13,19 @@ const produtoController = {
                 res.status(500).json(err); // 500 = Internal Error
             })
     },
-
+    category: (req, res) => {
+        let cat = req.params.id;
+        Produto.findAll( {
+            where: {categoria:cat},
+            include: [{ model: db.Cores, as: "cores"}]
+        })
+            .then((produtos) => {
+                res.status(200).json(produtos)
+            })
+            .catch(err => {
+                res.status(500).json(err); // 500 = Internal Error
+            })
+    },
     // POR ID
 
     findById: (req, res) => {
